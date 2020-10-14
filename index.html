@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <title>Compras 15nales</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="css/bootstrap-450/css/bootstrap.min.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+    crossorigin="anonymous" />
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+<body>
+  <div class="container pt-4" id="app">
+    <h2 class="text-center">{{titulo}}</h2>
+    <div class="row">
+      <div class="col-6 col-sm-6">
+        <div ID="frmAddNew">
+          <div class="form-group">
+            <input type="text" class="form-control" id="txtProd" v-model="productoNombre"
+              placeholder="Ingrese Producto">
+          </div>
+          <div class="form-group">
+            <input type="number" class="form-control" id="txtCant" v-model="cantidad" placeholder="Ingrese Cantidad">
+          </div>
+          <div class="form-group">
+            <input type="number" class="form-control" id="txtPrec" v-model="precio" placeholder="Ingrese Precio">
+          </div>
+          <div class="form-group">
+            <button type="button" @click="createArticulo()" class="btn btn-outline-success btn-block">Guardar</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-sm-6">
+        <div class="form-group">
+          <h5 class="btn btn-primary w-100">Hay <span class="badge badge-light">{{verFalsos()}}</span> para Comprar
+          </h5>
+          <span class="btn btn-info w-100">Total: <h3>C$ {{verDAtos()}}</h3></span>
+        </div>
+
+
+      </div>
+    </div>
+
+
+    <div id="lstActivities">
+      <div class="mt-3" v-for="(item, index) of productos">
+
+        <div :class="['alert', item.estado ? 'alert-success':'alert-danger']" role="alert">
+          <div class="d-flex justify-content-around align-items-center">
+            <i class="fas fa-angle-double-right mr-2"></i>
+            <span>
+              <b>{{item.productoNombre}}</b>
+            </span>
+            --
+
+            <span class="text-justify">
+              <span>- {{item.cantidad}} -</span>
+              <span>- {{item.precio}} -</span>
+              <b>Total: C$ {{item.precioTotal}}</b>
+            </span>
+
+            <span class="ml-4">
+              <button type="button" class="btn btn-link  mr-2" @click="editarProducto(index)"><i
+                  class="fas fa-check"></i></button>
+              <button type="button" class="btn btn-link" @click="eliminarProducto(index)"><i
+                  class="fas fa-trash"></i></button>
+
+            </span>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+  <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
+  </script>
+  <script src="css/bootstrap-450/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="js/app.js"></script>
+</body>
+
+</html>
