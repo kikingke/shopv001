@@ -33,15 +33,16 @@
             <input type="number" class="form-control" id="txtPrec" v-model="precio" placeholder="Ingrese Precio">
           </div>
           <div class="form-group">
-            <button type="button" @click="createArticulo()" class="btn btn-outline-success btn-block">Guardar</button>
+            <button type="button" @click="guardarArticulo()" class="btn btn-success btn-block">Guardar</button>
           </div>
         </div>
       </div>
       <div class="col-6 col-sm-6">
         <div class="form-group">
-          <h5 class="btn btn-primary w-100">Hay <span class="badge badge-light">{{verFalsos()}}</span> para Comprar
+          <h5 class="btn btn-primary w-100">Faltan <span class="badge badge-light">{{verFalsos()}}</span> articulos por
+            Comprar
           </h5>
-          <span class="btn btn-info w-100">Total: <h3>C$ {{verDAtos()}}</h3></span>
+          <span class="btn btn-info w-100">Compra Total: <h3>C$ {{verDAtos()}}</h3></span>
         </div>
 
 
@@ -49,36 +50,49 @@
     </div>
 
 
-    <div id="lstActivities">
-      <div class="mt-3" v-for="(item, index) of productos">
 
-        <div :class="['alert', item.estado ? 'alert-success':'alert-danger']" role="alert">
-          <div class="d-flex justify-content-around align-items-center">
-            <i class="fas fa-angle-double-right mr-2"></i>
-            <span>
-              <b>{{item.productoNombre}}</b>
-            </span>
-            --
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Art.</th>
+          <th scope="col">Cant.</th>
+          <th scope="col">Precio</th>
+          <th scope="col">Total</th>
+          <th scope="col">Opc.</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(item, index) of productos" :class="['alert', item.estado ? 'alert-success':'alert-danger']">
+          <td>{{item.productoNombre}}</td>
+          <td>{{item.cantidad}}</td>
+          <td>{{item.precio}}</td>
+          <td>C$ {{item.precioTotal}}</td>
+          <td>
 
-            <span class="text-justify">
-              <span>- {{item.cantidad}} -</span>
-              <span>- {{item.precio}} -</span>
-              <b>Total: C$ {{item.precioTotal}}</b>
-            </span>
+            <div class="btn-group">
+              <button type="button" class="btn btn-link btn-controls" @click="editarEstado(index)"><i
+                  :class="['fas ', item.estado ? 'fa-toggle-on':'fa-toggle-off']"></i></button>
+              <button type="button" class="btn btn-link btn-controls dropdown-toggle-split" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-caret-down"></i>
+              </button>
+              <div class="dropdown-menu">
+                <a class="dropdown-item btn-controls" href="#" @click="editarProducto(item,index)">
+                  <i class="far fa-edit"></i> Editar
+                </a>
+                <a class="dropdown-item btn-controls" href="#" @click="eliminarProducto(index)">
+                  <i class="fas fa-trash"></i> Eliminar
+                </a>
+              </div>
+            </div>
 
-            <span class="ml-4">
-              <button type="button" class="btn btn-link  mr-2" @click="editarProducto(index)"><i
-                  class="fas fa-check"></i></button>
-              <button type="button" class="btn btn-link" @click="eliminarProducto(index)"><i
-                  class="fas fa-trash"></i></button>
 
-            </span>
-          </div>
-        </div>
-      </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
 
-    </div>
   </div>
 
   <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
