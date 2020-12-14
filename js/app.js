@@ -40,7 +40,8 @@ const app = new Vue({
                 }
 
             } else {
-                this.productos.push({
+                if(this.productoNombre != '' || this.cantidad != ' || this.precio != ''){
+                 this.productos.push({
                     productoNombre: this.productoNombre,
                     cantidad: this.cantidad,
                     precio: this.precio,
@@ -52,6 +53,9 @@ const app = new Vue({
                 this.productoNombre = '';
                 this.cantidad = '';
                 this.precio = '';
+                }
+                 console.log('Campos vacios');
+               
             }
 
 
