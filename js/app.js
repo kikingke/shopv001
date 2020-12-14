@@ -40,7 +40,7 @@ const app = new Vue({
                 }
 
             } else {
-                if(this.productoNombre != '' || this.cantidad != ' || this.precio != ''){
+                if(this.productoNombre != "" || this.cantidad != "" || this.precio != ""){
                  this.productos.push({
                     productoNombre: this.productoNombre,
                     cantidad: this.cantidad,
